@@ -24,7 +24,7 @@ It’s not just an engine, not just a tactics app, and not just a book. It’s a
 
 The long-term vision is a **lifelong chess mentor** that grows with the player, working just as well for a total beginner as for a serious improver trying to challenge strong engines.
 
-This repo is the starting point for designing and implementing Caïssa’s **MVP**.
+This repo now contains the outcomes of the initial design sprint for Caïssa’s **MVP**. For detailed specs, architecture, UX flows, and roadmap, see the documents referenced near the end of this README.
 
 ---
 
@@ -81,53 +81,16 @@ The MVP should support three teaching modes, all powered by the same core engine
 
 ---
 
-## Game Review (Key MVP Feature)
+## Current MVP Scope
 
-After each game, Caïssa offers a structured review:
+The first build focuses solely on **human vs computer** play where the tutor is a trusted third party sitting on the human side. The engine opponent never sees the tutor conversation—players can plan moves in private and only commit when ready. Shipping goals:
 
-1. **Your Story First**
+- Mobile-first dual-board experience: a light-mode tournament board for live play plus a contrasting dark-mode analysis panel with chat, scrubbing, and shortcuts like “Position?” or “Best moves?”.
+- Mode-specific tone (Beginner / Improver / Challenger) driven by the tutor orchestrator and Stockfish-backed analysis.
+- Lightweight account layer (device or magic link) so users can resume sessions.
+- Session wrap banner with optional reflection input (full post-game review is deferred to the roadmap).
 
-   - User is prompted to describe what they thought was happening at key moments.
-   - Encourages self-explanation and reflection.
-
-2. **Key Moments, Not Every Move**
-
-   - Identify:
-     - Blunders and missed wins
-     - Large evaluation swings
-     - Strategic turning points
-   - Show these on the analysis board with short, focused explanations.
-
-3. **Conceptual Lessons**
-
-   - Tag each key moment with themes:
-     - “Loose piece tactics”
-     - “Mishandled pawn break”
-     - “King safety vs premature attack”
-     - “Endgame king activity”, etc.
-
-4. **Takeaways**
-   - End each review with 1–3 concrete lessons in plain language.
-   - Optional: short drills built from the player’s own game positions (roadmap, may not be in the very first build).
-
----
-
-## Memory & Player Model (MVP Level)
-
-Caïssa should start building a simple **player model** even in the MVP:
-
-- Track:
-
-  - Common tactical misses (e.g., forks, back-rank mates).
-  - Repeated strategic issues (e.g., pushing flank pawns instead of developing, avoiding central pawn breaks).
-  - Phase weaknesses (opening/middlegame/endgame).
-
-- Use this model to:
-  - Highlight recurring patterns in game reviews.
-  - Slightly tailor explanations (“You often struggle with X; here it shows up again.”).
-
-For MVP, a lightweight tagging and statistics approach is sufficient.  
-No complex ML required initially; that can evolve later.
+Player memory, multiplayer, and structured reviews remain critical but are tracked as post-MVP milestones.
 
 ---
 
@@ -177,13 +140,17 @@ Desktop/web can reuse much of the same backend and conceptual model, but **mobil
 
 ## Status
 
-This repository is currently a **concept and coordination seed**:
+- ✅ Design sprint complete: requirements, architecture, UX flows, and backlog captured in `/docs`.
+- 🚧 Implementation not started: next up is scaffolding mobile + backend skeletons per `AGENT.md`.
 
-- `AGENT.md` directs an AI coding agent (e.g., Codex) on next steps.
-- `README.md` describes the vision and MVP scope at a high level.
-- There is **no code yet**; the next step is to:
-  - refine requirements,
-  - choose architecture and stack,
-  - and define an implementation plan.
+## Design Artifacts Index
 
-Contributions—human or AI—should treat this README as the product’s guiding intent.
+| Area | File |
+| --- | --- |
+| Detailed MVP requirements & user stories | [`docs/requirements.md`](docs/requirements.md) |
+| System architecture, stack, data model | [`docs/architecture.md`](docs/architecture.md) |
+| Mobile UX flows & wireframe prompts | [`docs/ux-flows.md`](docs/ux-flows.md) |
+| Backlog & roadmap (MVP → post-MVP) | [`docs/backlog.md`](docs/backlog.md) |
+| Agent collaboration ritual & instructions | [`AGENT.md`](AGENT.md) |
+
+Refer to those documents for authoritative guidance as we move into implementation. Contributions—human or AI—should treat this README as the high-level narrative and the `/docs` set as the source of truth for specifics.
